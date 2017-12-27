@@ -1,4 +1,4 @@
-#include <TestConfig.h>
+﻿#include <TestConfig.h>
 #include <Lumino/Base/Serialization.h>
 #include <Lumino/Json/JsonDocument.h>
 #include <Lumino/Reflection/ReflectionObject.h>
@@ -376,6 +376,42 @@ TEST_F(Test_Serialization, PrimitiveValues)
 	ASSERT_DOUBLE_EQ(obj1.v_doublem, obj2.v_doublem);
 	ASSERT_EQ(obj1.v_str, obj2.v_str);
 }
+
+//------------------------------------------------------------------------------
+// ## クラスバージョンバージョンのテスト
+struct ClassVersionTest1
+{
+	ln::String		name;
+
+	void serialize(ln::tr::Archive& ar, int version)
+	{
+		ar & ln::tr::makeNVP(_TT("name"), name);
+	}
+};
+LN_SERIALIZE_CLASS_VERSION(ClassVersionTest1, 5);
+
+TEST_F(Test_Serialization, ClassVersionTest1)
+{
+	// Save
+	{
+		ClassVersionTest1 obj1;
+		tr::JsonDocument2 doc;
+		tr::Archive ar(&doc, tr::ArchiveMode::save, true);
+		ar.save(obj1);
+		String json = doc.toString();
+		printf("");
+	}
+
+	//// Load
+	//Test obj2;
+	//{
+	//	tr::JsonDocument2 doc;
+	//	doc.parse(json);
+	//	tr::Archive ar(&doc, tr::ArchiveMode::load, true);
+	//	ar.load(obj2);
+	//}
+}
+
 
 #if 0
 class TestObject1

@@ -127,7 +127,7 @@ TypeInfo::TypeInfo(
 	, m_bindingTypeInfoSetter(bindingTypeInfoSetter)
 	, m_bindingTypeInfoGetter(bindingTypeInfoGetter)
 	, m_factory(nullptr)
-	, m_serializeClassVersion(0)
+	//, m_serializeClassVersion(0)
 	, m_internalGroup(0)
 {
 	TypeInfoManager::getInstance()->RegisterTypeInfo(this);

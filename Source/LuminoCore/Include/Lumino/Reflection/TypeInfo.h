@@ -108,7 +108,7 @@ public:
 
 
 	Ref<ReflectionObject> createInstance();
-	int getSerializeClassVersion() const { return m_serializeClassVersion; }
+	//int getSerializeClassVersion() const { return m_serializeClassVersion; }
 
 protected:
 	void setInternalGroup(intptr_t group) { m_internalGroup = group; }
@@ -123,7 +123,7 @@ private:
 	BindingTypeInfoGetter		m_bindingTypeInfoGetter;
 	detail::ObjectFactory		m_factory;
 
-	int							m_serializeClassVersion;
+	//int							m_serializeClassVersion;
 
 	intptr_t					m_internalGroup;
 };
